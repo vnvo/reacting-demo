@@ -8,3 +8,16 @@ before_install:
 
 script:
   - docker run -e CI=true vnvo/reacting-demo npm run test
+
+deploy:
+  provider: elasticbeanstalk
+  region: "us-east-2"
+  app: "reacting-demo"
+  env: "ReactingDemo-env-1"
+  bucket_name: "elasticbeanstalk-us-east-2-956739211007"
+  bucket_path: "reacting-demo"
+  on:
+    branch: master
+  access_key_id: $AWS_ACCESS_KEY
+  secret_access_key: $AWS_SECRET_KEY
+
